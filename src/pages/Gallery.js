@@ -12,7 +12,7 @@ const Gallery = () => {
   // Fetch albums & photos (read-only)
   useEffect(() => {
     axios
-      .get("http://nss-website-backend.onrender.com/api/albums")
+      .get("https://nss-website-backend.onrender.com/api/albums")
       .then((res) => {
         setAlbums(res.data.albums);
         setPhotos(res.data.photos);

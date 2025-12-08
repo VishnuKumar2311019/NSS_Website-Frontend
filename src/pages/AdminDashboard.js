@@ -59,7 +59,7 @@ useEffect(() => {
 useEffect(() => {
   if (!isAuthenticated()) return;
   if (activeTab === 'activities' && selectedAction === 'view') {
-    fetch("http://nss-website-backend.onrender.com/admin/get-activities", {
+    fetch("https://nss-website-backend.onrender.com/admin/get-activities", {
       headers: getAuthHeaders()
     })
       .then((res) => {
@@ -91,7 +91,7 @@ const handleReportUpload = async (files) => {
   });
 
   try {
-    const res = await fetch('http://nss-website-backend.onrender.com/admin/upload-reports', {
+    const res = await fetch('https://nss-website-backend.onrender.com/admin/upload-reports', {
       method: 'POST',
       headers: getAuthHeadersForFormData(),
       body: formData
@@ -115,7 +115,7 @@ const handleReportUpload = async (files) => {
 const handleAddUser = async (e) => {
   e.preventDefault();
   try {
-    const res = await fetch('http://nss-website-backend.onrender.com/admin/add-user', {
+    const res = await fetch('https://nss-website-backend.onrender.com/admin/add-user', {
       method: 'POST',
       headers: getAuthHeaders(),
       body: JSON.stringify(formData)
@@ -138,7 +138,7 @@ const handleAddUser = async (e) => {
 const handleUpdateUser = async (e) => {
   e.preventDefault();
   try {
-    const res = await fetch('http://nss-website-backend.onrender.com/admin/update-user', {
+    const res = await fetch('https://nss-website-backend.onrender.com/admin/update-user', {
       method: 'PUT',
       headers: getAuthHeaders(),
       body: JSON.stringify(formData)
@@ -161,7 +161,7 @@ const handleUpdateUser = async (e) => {
 const handleDeleteUser = async (e) => {
   e.preventDefault();
   try {
-    const res = await fetch('http://nss-website-backend.onrender.com/admin/delete-user', {
+    const res = await fetch('https://nss-website-backend.onrender.com/admin/delete-user', {
       method: 'DELETE',
       headers: getAuthHeaders(),
       body: JSON.stringify({ email: formData.email })
@@ -189,7 +189,7 @@ const handleDeleteUser = async (e) => {
         return (
           <form
             className="form-card"
-            onSubmit={(e) => handleAddUser(e, 'http://nss-website-backend.onrender.com/admin/add-user','POST')}
+            onSubmit={(e) => handleAddUser(e, 'https://nss-website-backend.onrender.com/admin/add-user','POST')}
           >
             <h3>Add Member</h3>
             <input name="email" type="email" placeholder="Email" value={formData.email || ""} onChange={handleChange} required />
@@ -205,7 +205,7 @@ const handleDeleteUser = async (e) => {
         return (
           <form
             className="form-card"
-            onSubmit={(e) => handleDeleteUser(e, 'http://nss-website-backend.onrender.com/admin/delete-user','DELETE')}
+            onSubmit={(e) => handleDeleteUser(e, 'https://nss-website-backend.onrender.com/admin/delete-user','DELETE')}
           >
             <h3>Delete Member</h3>
             <input name="email" type="email" placeholder="Email" value={formData.email || ""} onChange={handleChange} required />
@@ -217,7 +217,7 @@ const handleDeleteUser = async (e) => {
         return (
           <form
             className="form-card"
-            onSubmit={(e) => handleUpdateUser(e, 'http://nss-website-backend.onrender.com/admin/update-user','PUT')}
+            onSubmit={(e) => handleUpdateUser(e, 'https://nss-website-backend.onrender.com/admin/update-user','PUT')}
           >
             <h3>Update Member</h3>
             <input name="existingEmail" type="email" placeholder="Existing Email" value={formData.existingEmail || ""} onChange={handleChange} required />
@@ -283,7 +283,7 @@ const handleDeleteUser = async (e) => {
                 photoFormData.append('photos', file);
               });
 
-              const photoRes = await fetch('http://nss-website-backend.onrender.com/admin/upload-photos', {
+              const photoRes = await fetch('https://nss-website-backend.onrender.com/admin/upload-photos', {
                 method: 'POST',
                 headers: getAuthHeadersForFormData(),
                 body: photoFormData
@@ -308,7 +308,7 @@ const handleDeleteUser = async (e) => {
               reports: uploadedReports
             };
 
-            const res = await fetch("http://nss-website-backend.onrender.com/admin/add-activity", {
+            const res = await fetch("https://nss-website-backend.onrender.com/admin/add-activity", {
               method: 'POST',
               headers: getAuthHeaders(),
               body: JSON.stringify(activityData),
@@ -322,7 +322,7 @@ const handleDeleteUser = async (e) => {
             
             // Refresh activities list if we're in view mode
             if (selectedAction === 'view') {
-              fetch("http://nss-website-backend.onrender.com/admin/get-activities")
+              fetch("https://nss-website-backend.onrender.com/admin/get-activities")
                 .then((res) => res.json())
                 .then((data) => setActivitiesList(data || []))
                 .catch((err) => console.error("Fetch activities error:", err));
@@ -474,7 +474,7 @@ const handleDeleteUser = async (e) => {
         <form className="form-card" onSubmit={async (e) => {
           e.preventDefault();
           try {
-            const res = await fetch("http://nss-website-backend.onrender.com/admin/delete-activity", {
+            const res = await fetch("https://nss-website-backend.onrender.com/admin/delete-activity", {
               method: 'DELETE',
               headers: getAuthHeaders(),
               body: JSON.stringify({ title: formData.title }),
@@ -513,7 +513,7 @@ const handleDeleteUser = async (e) => {
                 photoFormData.append('photos', file);
               });
 
-              const photoRes = await fetch('http://nss-website-backend.onrender.com/admin/upload-photos', {
+              const photoRes = await fetch('https://nss-website-backend.onrender.com/admin/upload-photos', {
                 method: 'POST',
                 headers: getAuthHeadersForFormData(),
                 body: photoFormData
@@ -539,7 +539,7 @@ const handleDeleteUser = async (e) => {
               newReports: uploadedReports
             };
 
-            const res = await fetch("http://nss-website-backend.onrender.com/admin/update-activity", {
+            const res = await fetch("https://nss-website-backend.onrender.com/admin/update-activity", {
               method: 'PUT',
               headers: getAuthHeaders(),
               body: JSON.stringify(updateData),
@@ -552,7 +552,7 @@ const handleDeleteUser = async (e) => {
             setFormData({});
 
             // Refresh activities list
-            fetch("http://nss-website-backend.onrender.com/admin/get-activities", {
+            fetch("https://nss-website-backend.onrender.com/admin/get-activities", {
               headers: getAuthHeaders()
             })
               .then((res) => res.json())

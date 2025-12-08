@@ -6,7 +6,7 @@ const ActivitiesPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://nss-website-backend.onrender.com/api/activities')
+    fetch('https://nss-website-backend.onrender.com/api/activities')
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) {
@@ -61,8 +61,8 @@ const ActivitiesPage = () => {
                     <div className="photos-grid">
                       {activity.photos.map((photo, photoIndex) => {
                         const imageUrl = photo.url 
-                          ? (photo.url.startsWith('http') ? photo.url : `http://nss-website-backend.onrender.com/${photo.url}`)
-                          : `http://nss-website-backend.onrender.com/uploads/${photo.filename || photo.name}`;
+                          ? (photo.url.startsWith('http') ? photo.url : `https://nss-website-backend.onrender.com/${photo.url}`)
+                          : `https://nss-website-backend.onrender.com/uploads/${photo.filename || photo.name}`;
                         
                         return (
                           <img 
@@ -86,8 +86,8 @@ const ActivitiesPage = () => {
                     <ul>
                       {activity.reports.map((report, reportIndex) => {
                         const reportUrl = report.url 
-                          ? (report.url.startsWith('http') ? report.url : `http://nss-website-backend.onrender.com/${report.url}`)
-                          : `http://nss-website-backend.onrender.com/uploads/${report.filename || report.name}`;
+                          ? (report.url.startsWith('http') ? report.url : `https://nss-website-backend.onrender.com/${report.url}`)
+                          : `https://nss-website-backend.onrender.com/uploads/${report.filename || report.name}`;
                         
                         return (
                           <li key={reportIndex}>

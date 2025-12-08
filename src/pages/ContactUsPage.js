@@ -19,7 +19,7 @@ const ContactUsPage = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://nss-website-backend.onrender.com/api/contact', {
+      const response = await fetch('https://nss-website-backend.onrender.com/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
