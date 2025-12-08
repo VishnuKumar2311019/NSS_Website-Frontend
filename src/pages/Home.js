@@ -27,7 +27,7 @@ const Home = () => {
 
 
   useEffect(() => {
-    axios.get('http://localhost:5000/admin/get-trending')
+    axios.get('http://nss-website-backend.onrender.com/admin/get-trending')
       .then(response => {
         setHighlights(response.data);
       })
@@ -40,7 +40,7 @@ const Home = () => {
 
     useEffect(() => {
     // Replace with your real backend API endpoint
-    fetch("http://localhost:5000/api/activities/latest")
+    fetch("http://nss-website-backend.onrender.com/api/activities/latest")
       .then((res) => res.json())
       .then((data) => {
         // Ensure data is an array
@@ -67,7 +67,7 @@ const Home = () => {
 
 
   useEffect(() => {
-  fetch("http://localhost:5000/api/activities") // replace with your backend API
+  fetch("http://nss-website-backend.onrender.com/api/activities") // replace with your backend API
     .then((res) => res.json())
     .then((data) => {
       // Ensure data is an array

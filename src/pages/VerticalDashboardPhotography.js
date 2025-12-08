@@ -12,7 +12,7 @@ const PhotographyDashboard = () => {
 
   // Fetch albums and photos
   useEffect(() => {
-    axios.get("http://localhost:5000/api/albums")
+    axios.get("http://nss-website-backend.onrender.com/api/albums")
       .then((res) => {
         setAlbums(res.data.albums);
         setPhotos(res.data.photos);
@@ -25,7 +25,7 @@ const PhotographyDashboard = () => {
     const trimmed = newAlbumName.trim();
     if (!trimmed || albums.includes(trimmed)) return;
 
-    axios.post("http://localhost:5000/api/albums", { name: trimmed })
+    axios.post("http://nss-website-backend.onrender.com/api/albums", { name: trimmed })
       .then(() => {
         setAlbums([...albums, trimmed]);
         setPhotos((prev) => ({ ...prev, [trimmed]: [] }));
@@ -36,7 +36,7 @@ const PhotographyDashboard = () => {
 
   // Delete album
   const deleteAlbum = (albumName) => {
-    axios.delete(`http://localhost:5000/api/albums/${encodeURIComponent(albumName)}`)
+    axios.delete(`http://nss-website-backend.onrender.com/api/albums/${encodeURIComponent(albumName)}`)
       .then(() => {
         setAlbums(albums.filter((a) => a !== albumName));
         const updatedPhotos = { ...photos };
@@ -55,7 +55,7 @@ const PhotographyDashboard = () => {
       formData.append("photos", file);
     });
 
-    axios.post(`http://localhost:5000/api/albums/${encodeURIComponent(albumName)}/photos`, formData)
+    axios.post(`http://nss-website-backend.onrender.com/api/albums/${encodeURIComponent(albumName)}/photos`, formData)
       .then((res) => {
         const uploaded = res.data.uploadedPhotos;
         setPhotos((prev) => ({
@@ -68,7 +68,7 @@ const PhotographyDashboard = () => {
 
   // Delete photo
   const deletePhoto = (albumName, index) => {
-    axios.delete(`http://localhost:5000/api/albums/${encodeURIComponent(albumName)}/photos/${encodeURIComponent(index)}`)
+    axios.delete(`http://nss-website-backend.onrender.com/api/albums/${encodeURIComponent(albumName)}/photos/${encodeURIComponent(index)}`)
       .then(() => {
         const updated = photos[albumName].filter((_, i) => i !== index);
         setPhotos((prev) => ({ ...prev, [albumName]: updated }));

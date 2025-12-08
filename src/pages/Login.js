@@ -14,7 +14,7 @@ const Login = () => {
     if (!email) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/auth/check-user?email=${email}`);
+      const res = await fetch(`http://nss-website-backend.onrender.com/auth/check-user?email=${email}`);
       const data = await res.json();
 
       if (data.role === 'verticalhead') {
@@ -39,7 +39,7 @@ const Login = () => {
         bodyData.vertical = verticalName; // include vertical only for vertical heads
       }
 
-      const response = await fetch('http://localhost:5000/auth/login', {
+      const response = await fetch('http://nss-website-backend.onrender.com/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(bodyData),
