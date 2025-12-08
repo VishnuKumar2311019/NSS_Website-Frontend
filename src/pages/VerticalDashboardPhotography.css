@@ -1,0 +1,238 @@
+/* ==== GLOBAL ==== */
+.photography-dashboard {
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  background-color: #003366; /* deep navy bg */
+  min-height: 100vh;
+  color: white;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.photography-dashboard h2 {
+  text-align: center;
+  font-size: 30px;
+  color: white;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  animation: slideDown 0.8s ease-in-out;
+}
+
+/* ==== ALBUM CREATION ==== */
+.album-creation {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  animation: fadeInUp 0.8s ease-in-out;
+}
+
+.album-creation input {
+  width: 250px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid white;
+  font-size: 16px;
+  background: #001a33;
+  color: white;
+  transition: all 0.3s ease;
+}
+.album-creation input:focus {
+  outline: none;
+  border-color: #b30000;
+  box-shadow: 0 0 8px rgba(179, 0, 0, 0.6);
+}
+
+.album-creation button {
+  background-color: #cadef3;
+  color: #003366;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: transform 0.2s, filter 0.2s;
+}
+.album-creation button:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* ==== ALBUM GRID ==== */
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 200px));
+  gap: 16px;
+  justify-content: center;
+}
+
+.album-card {
+  max-width: 200px;
+  background-color: #fff;
+  border: 1px solid #3386d9;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: fadeInUp 0.8s ease-in-out;
+}
+.album-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Delete album icon */
+.delete-album-icon {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  color: #b30000;
+  background: #003366;
+  border-radius: 50%;
+  padding: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: transform 0.2s, color 0.2s;
+}
+.delete-album-icon:hover {
+  transform: scale(1.2);
+  color: #ff4c4c;
+}
+
+/* Album thumbnail */
+.album-thumbnail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #003366;
+  border-radius: 6px;
+  padding: 5px;
+  /* Remove forced full width */
+  width: auto;
+  height: 140px; /* fixed height */
+  max-width: 200px; /* control box width */
+  margin: 0 auto; /* center in grid */
+}
+
+.album-thumbnail img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* prevents stretching */
+  border-radius: 6px;
+}
+
+.album-thumbnail img:hover {
+  transform: scale(1.05);
+}
+
+.empty-thumb {
+  color: #000000;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Album footer */
+.album-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #cadef3;
+}
+.album-footer p {
+  margin: 0;
+  font-weight: 600;
+  color: #003366;
+  
+}
+
+/* ==== PHOTO GRID ==== */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 160px); /* fixed width columns */
+  justify-content: center;  /* center grid if not full */
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.photo-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;  /* some spacing */
+  height: auto;  /* 🚀 remove fixed height */
+}
+
+.photo-card img {
+  max-width: 100%;
+  height: auto;        /* natural aspect ratio */
+  object-fit: contain; /* avoids stretching */
+  border-radius: 6px;
+}
+
+
+.photo-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+
+.photo-card img:hover {
+  transform: scale(1.07);
+}
+
+/* Delete photo icon */
+.delete-icon {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  color: #b30000;
+  background: #003366;
+  border-radius: 50%;
+  padding: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: transform 0.2s, color 0.2s;
+}
+.delete-icon:hover {
+  transform: scale(1.2);
+  color: #ff4c4c;
+}
+
+/* ==== ANIMATIONS ==== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes fadeInUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 600px) {
+  .album-creation {
+    flex-direction: column;
+    align-items: center;
+  }
+  .album-creation input {
+    width: 90%;
+  }
+  .album-grid, .photo-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+}

@@ -1,0 +1,66 @@
+/* Wrapper */
+.stories-wrapper {
+  padding: 60px 20px;
+  /*background: linear-gradient(135deg, #cadef3, #003366);*/
+  background-color: #003366;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  min-height:100vh;
+}
+
+/* Title */
+.stories-title {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  font-weight: 700;
+  color: #f8f8f8;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+/* Grid layout */
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Story card */
+.story-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(6px);
+  border-left: 6px solid #b30000;
+}
+
+.story-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
+/* Text */
+.story-text {
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #f0f6fa;
+}
+
+/* Author */
+.story-author h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #cadef3;
+}
+
+.story-author span {
+  display: block;
+  font-size: 0.9rem;
+  color: #f5c2c2;
+}

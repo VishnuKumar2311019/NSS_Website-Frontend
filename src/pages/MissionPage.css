@@ -1,0 +1,98 @@
+.mission-wrapper {
+  background-image: url('../assets/camp-gallery/NssGroupPhoto.png');
+  /*background-color: #003366;*/
+  background-size: cover;       
+  background-position: center;  
+  background-repeat: no-repeat; 
+  background-attachment: fixed; 
+  height: 100vh;                
+  width: 100%;    
+  overflow: hidden; 
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mission-container::-webkit-scrollbar {
+  display: none;
+}
+
+.mission-container {
+  padding: 40px 25px;
+  width: 85%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 20px;
+  /*background: rgba(79, 120, 161, 0.55); /* navy glass effect */
+  background:transparent;
+  backdrop-filter: blur(0px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+  color: #f0f6fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: fadeIn 1s ease-in;
+}
+
+.mission-container section {
+  background:#cadef3; /* light blue cards */
+  padding: 25px;
+  margin: 25px auto;
+  border-radius: 15px;
+  max-width: 900px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.8s ease forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color:#003366;
+}
+
+.mission-container section:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(179, 0, 0, 0.5);
+}
+
+.mission-container h2,
+.mission-container h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #003366; /* navy heading */
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+}
+
+.mission-container ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.mission-container li {
+  padding: 12px 18px;
+  margin-bottom: 12px;
+  position: relative;
+  background: rgba(104, 144, 196, 0.75);
+  border-left: 6px solid #003366; /* red accent */
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.mission-container li:hover {
+  transform: scale(1.03);
+  background: rgba(82, 118, 156, 0.95);
+  border-left-color: #003366;
+}
+
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

@@ -1,0 +1,52 @@
+/* ClubsPage.css */
+.clubs-page {
+  padding: 40px;
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff; /* default text white */
+  width: 100vw;   /* full width */
+  min-height: 100vh;
+  background-color: #003366; /* full dark blue */
+  box-sizing: border-box;
+}
+.clubs-page h1{
+    color:#cadef3;
+}
+
+/* Tabs */
+.club-tabs {
+  margin-bottom: 25px;
+}
+
+.club-tabs button {
+  margin-right: 10px;
+  padding: 10px 25px;
+  border-radius: 5px;
+  border: none;
+  background-color: #e6f0ff;
+  color: #003366; /* default dark text */
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.club-tabs button:hover {
+  background: linear-gradient(135deg, #6699ff, #003366);
+  color: #ffffff; /* white text on hover */
+}
+
+.club-tabs button.active {
+  background: linear-gradient(135deg, #003366, #001a33);
+  color: #ffffff; /* white text */
+}
+
+/* Content */
+.club-content {
+  background: #f9f9f9;
+  color: #003366; /* dark text inside content box */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+}
+.club-content h2{
+    color:#003366;
+}

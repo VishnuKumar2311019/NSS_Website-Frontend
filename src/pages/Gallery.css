@@ -1,0 +1,133 @@
+.gallery-wrapper{
+  background-color: #003366;
+  min-height: 100vh;
+}
+.gallery-container {
+  padding: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.gallery-title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  color: #cadef3;
+  margin-bottom: 30px;
+}
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+.album-card {
+  background: #cadef3;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.album-card:hover {
+  transform: translateY(-5px);
+}
+
+.album-thumb img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.empty-thumb {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  background: #f1f1f1;
+}
+
+.album-name {
+  padding: 10px;
+  text-align: center;
+  font-weight: 600;
+  color: #003366;
+}
+
+/* Album Photos */
+.album-view {
+  margin-top: 20px;
+}
+
+.album-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #cadef3;
+}
+
+.album-header h3 {
+  color: #003366;
+}
+
+.back-btn {
+  padding: 6px 12px;
+  border: none;
+  background: #003366;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.photo-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.photo-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.25s;
+}
+
+.photo-card img:hover {
+  transform: scale(1.05);
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  position: relative;
+}
+
+.modal-img {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 12px;
+}
+
+.modal-close {
+  position: absolute;
+  top: -40px;
+  right: -10px;
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 5px 10px;
+  cursor: pointer;
+}

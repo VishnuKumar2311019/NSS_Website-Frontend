@@ -1,0 +1,26 @@
+.page-wrapper {
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #003366;
+  color: #cadef3;
+  min-height: 100vh; /* ensures it covers the full screen */
+}
+
+.page-wrapper h1 {
+  font-size: 2rem;
+  color: #cadef3;
+  margin-bottom: 1rem;
+}
+
+.page-wrapper h2 {
+  font-size: 1.5rem;
+  color: #cadef3;
+  margin-top: 2rem;
+}
+
+.page-wrapper ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  line-height: 1.6;
+  font-size: 1rem;
+}
