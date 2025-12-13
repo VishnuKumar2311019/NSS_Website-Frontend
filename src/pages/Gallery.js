@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Gallery.css";
+import { API_BASE } from "../utils/api";
 
 const Gallery = () => {
   const [albums, setAlbums] = useState([]);
@@ -11,13 +12,12 @@ const Gallery = () => {
 
   // Fetch albums & photos (read-only)
   useEffect(() => {
-    // Fetch albums from local backend (adjust host if needed)
     axios
-      .get("http://localhost:5000/api/albums")
+      .get(`${API_BASE}/api/albums`)
       .then((res) => {
-        // backend returns an array of album objects { name, photos }
         const data = res.data || [];
         setAlbums(data.map((a) => a.name));
+
         const photosMap = {};
         data.forEach((a) => {
           photosMap[a.name] = a.photos || [];
@@ -29,69 +29,82 @@ const Gallery = () => {
 
   return (
     <div className="gallery-wrapper">
-    <div className="gallery-container">
-      <h2 className="gallery-title">📸 Our Gallery</h2>
+      <div className="gallery-container">
+        <h2 className="gallery-title">📸 Our Gallery</h2>
 
-      {!selectedAlbum ? (
-        <div className="album-grid">
-          {albums.map((album) => (
-            <div
-              className="album-card"
-              key={album}
-              onClick={() => setSelectedAlbum(album)}
-            >
-              <div className="album-thumb">
-                {photos[album]?.[0] ? (
-                  <img src={photos[album][0].url} alt={`${album} thumbnail`} />
-                ) : (
-                  <div className="empty-thumb">No Photos</div>
-                )}
-              </div>
-              <div className="album-name">{album}</div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="album-view">
-          <div className="album-header">
-            <h3>{selectedAlbum}</h3>
-            <button className="back-btn" onClick={() => setSelectedAlbum(null)}>
-              ← Back
-            </button>
-          </div>
-
-          <div className="photo-grid">
-            {photos[selectedAlbum]?.map((photo, index) => (
+        {!selectedAlbum ? (
+          <div className="album-grid">
+            {albums.map((album) => (
               <div
-                className="photo-card"
-                key={index}
-                onClick={() => setModalImage(photo.url)}
+                className="album-card"
+                key={album}
+                onClick={() => setSelectedAlbum(album)}
               >
-                <img src={photo.url} alt={photo.name} />
+                <div className="album-thumb">
+                  {photos[album]?.[0] ? (
+                    <img
+                      src={photos[album][0].url}
+                      alt={`${album} thumbnail`}
+                    />
+                  ) : (
+                    <div className="empty-thumb">No Photos</div>
+                  )}
+                </div>
+                <div className="album-name">{album}</div>
               </div>
             ))}
           </div>
-        </div>
-      )}
+        ) : (
+          <div className="album-view">
+            <div className="album-header">
+              <h3>{selectedAlbum}</h3>
+              <button
+                className="back-btn"
+                onClick={() => setSelectedAlbum(null)}
+              >
+                ← Back
+              </button>
+            </div>
 
-      {/* Modal View */}
-      {modalImage && (
-        <div
-          className="modal-overlay"
-          onClick={() => setModalImage(null)}
-        >
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <img src={modalImage} alt="Full View" className="modal-img" />
-            <button
-              className="modal-close"
-              onClick={() => setModalImage(null)}
-            >
-              ✖
-            </button>
+            <div className="photo-grid">
+              {photos[selectedAlbum]?.map((photo, index) => (
+                <div
+                  className="photo-card"
+                  key={index}
+                  onClick={() => setModalImage(photo.url)}
+                >
+                  <img src={photo.url} alt={photo.name || "photo"} />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+
+        {/* Modal View */}
+        {modalImage && (
+          <div
+            className="modal-overlay"
+            onClick={() => setModalImage(null)}
+          >
+            <div
+              className="modal-content"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={modalImage}
+                alt="Full View"
+                className="modal-img"
+              />
+              <button
+                className="modal-close"
+                onClick={() => setModalImage(null)}
+              >
+                ✖
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

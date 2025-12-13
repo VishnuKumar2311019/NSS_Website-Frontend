@@ -1,5 +1,6 @@
 import React,{ useEffect, useState } from "react";
 import './AdminDashboard.css';
+import VerticalDashboardPhotography from './VerticalDashboardPhotography';
 import { getAuthHeaders, getAuthHeadersForFormData, isAuthenticated, logout } from '../utils/auth';
 
 const AdminDashboard = () => {
@@ -1056,18 +1057,26 @@ if (activeTab === 'gallery') {
       </aside>
 
       <main className="main-content">
-        <div className="button-group">
-          {['add', 'update', 'delete', 'view'].map((action) => (
-            <button
-              key={action}
-              onClick={() => handleActionClick(action)}
-              className={selectedAction === action ? 'selected' : ''}
-            >
-              {action.charAt(0).toUpperCase() + action.slice(1)}
-            </button>
-          ))}
-        </div>
-        {renderForm()}
+        {/* If gallery is selected, render the photography admin component which
+            already handles create/upload/delete/view for albums and photos. */}
+        {activeTab === 'gallery' ? (
+          <VerticalDashboardPhotography />
+        ) : (
+          <>
+            <div className="button-group">
+              {['add', 'update', 'delete', 'view'].map((action) => (
+                <button
+                  key={action}
+                  onClick={() => handleActionClick(action)}
+                  className={selectedAction === action ? 'selected' : ''}
+                >
+                  {action.charAt(0).toUpperCase() + action.slice(1)}
+                </button>
+              ))}
+            </div>
+            {renderForm()}
+          </>
+        )}
       </main>
     </div>
   );

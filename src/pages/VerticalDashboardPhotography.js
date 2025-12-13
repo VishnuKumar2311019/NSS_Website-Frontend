@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./VerticalDashboardPhotography.css";
 import { FaPlus, FaTrash } from "react-icons/fa";
+import { API_BASE } from '../utils/api';
 
 const PhotographyDashboard = () => {
   const [albums, setAlbums] = useState([]);
@@ -12,7 +13,7 @@ const PhotographyDashboard = () => {
 
   // Fetch albums and photos
   useEffect(() => {
-    axios.get("https://nss-website-backend.onrender.com/api/albums")
+    axios.get(`${API_BASE}/api/albums`)
       .then((res) => {
         setAlbums(res.data.albums);
         setPhotos(res.data.photos);
@@ -25,7 +26,7 @@ const PhotographyDashboard = () => {
     const trimmed = newAlbumName.trim();
     if (!trimmed || albums.includes(trimmed)) return;
 
-    axios.post("https://nss-website-backend.onrender.com/api/albums", { name: trimmed })
+    axios.post(`${API_BASE}/api/albums`, { name: trimmed })
       .then(() => {
         setAlbums([...albums, trimmed]);
         setPhotos((prev) => ({ ...prev, [trimmed]: [] }));
@@ -36,7 +37,7 @@ const PhotographyDashboard = () => {
 
   // Delete album
   const deleteAlbum = (albumName) => {
-    axios.delete(`https://nss-website-backend.onrender.com/api/albums/${encodeURIComponent(albumName)}`)
+    axios.delete(`${API_BASE}/api/albums/${encodeURIComponent(albumName)}`)
       .then(() => {
         setAlbums(albums.filter((a) => a !== albumName));
         const updatedPhotos = { ...photos };
@@ -55,7 +56,7 @@ const PhotographyDashboard = () => {
       formData.append("photos", file);
     });
 
-    axios.post(`https://nss-website-backend.onrender.com/api/albums/${encodeURIComponent(albumName)}/photos`, formData)
+    axios.post(`${API_BASE}/api/albums/${encodeURIComponent(albumName)}/photos`, formData)
       .then((res) => {
         const uploaded = res.data.uploadedPhotos;
         setPhotos((prev) => ({
@@ -68,7 +69,7 @@ const PhotographyDashboard = () => {
 
   // Delete photo
   const deletePhoto = (albumName, index) => {
-    axios.delete(`https://nss-website-backend.onrender.com/api/albums/${encodeURIComponent(albumName)}/photos/${encodeURIComponent(index)}`)
+    axios.delete(`${API_BASE}/api/albums/${encodeURIComponent(albumName)}/photos/${encodeURIComponent(index)}`)
       .then(() => {
         const updated = photos[albumName].filter((_, i) => i !== index);
         setPhotos((prev) => ({ ...prev, [albumName]: updated }));
