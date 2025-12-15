@@ -58,7 +58,7 @@ const AdminDashboard = () => {
 // Fetch albums when gallery tab is active
 useEffect(() => {
   if (activeTab === 'gallery') {
-    fetch("http://localhost:5000/api/albums")
+    fetch("https://nss-website-backend.onrender.com/api/albums")
       .then((res) => res.json())
       .then((data) => {
         const arr = data || [];
@@ -791,7 +791,7 @@ if (activeTab === 'gallery') {
     e.preventDefault();
     if (!newAlbumName) return alert('Enter album name');
     try {
-      const res = await fetch('http://localhost:5000/api/albums', {
+      const res = await fetch('https://nss-website-backend.onrender.com/api/albums', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: newAlbumName })
@@ -800,7 +800,7 @@ if (activeTab === 'gallery') {
       if (!res.ok) throw new Error(data.error || data.message);
       alert('Album created');
       setNewAlbumName('');
-      const ref = await fetch('http://localhost:5000/api/albums');
+      const ref = await fetch('https://nss-website-backend.onrender.com/api/albums');
       const arr = await ref.json();
       setAlbumsList(arr || []);
       // notify gallery viewers to refresh
@@ -823,7 +823,7 @@ if (activeTab === 'gallery') {
     if (!finalAlbumName) {
       finalAlbumName = `Gallery ${new Date().getFullYear()}`;
       try {
-        const createRes = await fetch('http://localhost:5000/api/albums', {
+        const createRes = await fetch('https://nss-website-backend.onrender.com/api/albums', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ name: finalAlbumName })
@@ -844,7 +844,7 @@ if (activeTab === 'gallery') {
     try {
       setGalleryUploading(true);
 
-      const uploadRes = await fetch('http://localhost:5000/admin/upload-photos', {
+      const uploadRes = await fetch('https://nss-website-backend.onrender.com/admin/upload-photos', {
         method: 'POST',
         headers: getAuthHeadersForFormData(),
         body: form
@@ -861,7 +861,7 @@ if (activeTab === 'gallery') {
       const uploadedPhotos = uploadData.photos || [];
 
       // 2) Associate uploaded photos with album via JSON to album endpoint
-      const associateRes = await fetch(`http://localhost:5000/api/albums/${encodeURIComponent(finalAlbumName)}/photos`, {
+      const associateRes = await fetch(`https://nss-website-backend.onrender.com/api/albums/${encodeURIComponent(finalAlbumName)}/photos`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ photos: uploadedPhotos })
@@ -874,7 +874,7 @@ if (activeTab === 'gallery') {
       setGalleryFiles(null);
 
       // refresh albums
-      const ref = await fetch('http://localhost:5000/api/albums');
+      const ref = await fetch('https://nss-website-backend.onrender.com/api/albums');
       const arr = await ref.json();
       setAlbumsList(arr || []);
       // notify gallery viewers to refresh
@@ -892,11 +892,11 @@ if (activeTab === 'gallery') {
     if (!albumName) return alert('Select an album');
     if (!window.confirm(`Delete album "${albumName}"? This will remove all photos.`)) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/albums/${encodeURIComponent(albumName)}`, { method: 'DELETE' });
+      const res = await fetch(`https://nss-website-backend.onrender.com/api/albums/${encodeURIComponent(albumName)}`, { method: 'DELETE' });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || data.message || 'Delete failed');
       alert(data.message || 'Album deleted');
-      const ref = await fetch('http://localhost:5000/api/albums');
+      const ref = await fetch('https://nss-website-backend.onrender.com/api/albums');
       const arr = await ref.json();
       setAlbumsList(arr || []);
       // notify gallery viewers to refresh
@@ -910,11 +910,11 @@ if (activeTab === 'gallery') {
   const handleDeletePhoto = async (albumName, index) => {
     if (!window.confirm('Delete this photo?')) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/albums/${encodeURIComponent(albumName)}/photos/${index}`, { method: 'DELETE' });
+      const res = await fetch(`https://nss-website-backend.onrender.com/api/albums/${encodeURIComponent(albumName)}/photos/${index}`, { method: 'DELETE' });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || data.message || 'Delete photo failed');
       alert(data.message || 'Photo deleted');
-      const ref = await fetch('http://localhost:5000/api/albums');
+      const ref = await fetch('https://nss-website-backend.onrender.com/api/albums');
       const arr = await ref.json();
       setAlbumsList(arr || []);
       // notify gallery viewers to refresh
