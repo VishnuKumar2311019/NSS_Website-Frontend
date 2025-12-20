@@ -12,8 +12,6 @@ ChartJS.register(
   Legend
 );
 
-
-
 // Core team verticals and description
 const coreTeam = {
   "Event Management": "Plans and coordinates NSS events, ensuring smooth logistics and collaboration with other teams.",
@@ -35,11 +33,9 @@ const volunteerOverview = {
   ],
 };
 
-// Sample monthly contributions (for public)
+// Sample monthly contributions
 const monthlyContributions = {
-  labels: [
-    "Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"
-  ],
+  labels: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
   datasets: [
     {
       label: "Hours Contributed",
@@ -49,7 +45,6 @@ const monthlyContributions = {
   ]
 };
 
-
 const TeamsPage = () => {
   const [selectedTab, setSelectedTab] = useState("core");
   const [showAttendancePrompt, setShowAttendancePrompt] = useState(false);
@@ -57,10 +52,10 @@ const TeamsPage = () => {
   const [attendanceAccess, setAttendanceAccess] = useState(false);
 
   const handleAttendanceSubmit = () => {
-    // Example passcode: 'SSN2025'
     if (passcode === "SSN2025") {
       setAttendanceAccess(true);
       setShowAttendancePrompt(false);
+      setPasscode("");
     } else {
       alert("Incorrect passcode. Access denied.");
       setPasscode("");
@@ -111,20 +106,21 @@ const TeamsPage = () => {
               ))}
             </ul>
           </div>
-        <div className="overview-cards">
-          <div className="card">
-            <h3>Total Volunteers</h3>
-            <p>1300+</p>
+
+          <div className="overview-cards">
+            <div className="card">
+              <h3>Total Volunteers</h3>
+              <p>1300+</p>
+            </div>
+            <div className="card">
+              <h3>Total Hours Contributed</h3>
+              <p>1000+</p>
+            </div>
+            <div className="card">
+              <h3>Events Organized</h3>
+              <p>250+</p>
+            </div>
           </div>
-          <div className="card">
-            <h3>Total Hours Contributed</h3>
-            <p>1000+</p>
-          </div>
-          <div className="card">
-            <h3>Events Organized</h3>
-            <p>250+</p>
-          </div>
-        </div>
 
           {/* Monthly Contributions Graph */}
           <div className="contributions-graph">
@@ -141,24 +137,46 @@ const TeamsPage = () => {
             />
           </div>
 
-          {/* Attendance Sheet Button */}
+          {/* Attendance Section */}
           <div className="attendance-section">
-            {attendanceAccess ? (
-              <a
-                href="https://docs.google.com/spreadsheets/d/1DFk62phy0veBHnJj3saI96LiyS-zV3GYp92mnYSgt5k/edit?usp=sharing
-"
-                download
-                className="attendance-btn"
-              >
-              Attendance Sheet
-              </a>
-            ) : (
+            {!attendanceAccess ? (
               <button
                 className="attendance-btn"
                 onClick={() => setShowAttendancePrompt(true)}
               >
-                View Your Attendance
+                View Attendance Sheets
               </button>
+            ) : (
+              <div className="attendance-links">
+                <h4>Select Year</h4>
+
+                <a
+                  href=""
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="attendance-btn"
+                >
+                  📘 First Year Attendance
+                </a>
+
+                <a
+                  href="https://docs.google.com/spreadsheets/d/1HBx1zccr7rSksv-H9IbO2U292MaUhar70t-PUkQ_Ulc/edit?gid=1040787099#gid=1040787099"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="attendance-btn"
+                >
+                  📗 Second Year Attendance
+                </a>
+
+                <a
+                  href="https://docs.google.com/spreadsheets/d/1DFk62phy0veBHnJj3saI96LiyS-zV3GYp92mnYSgt5k/edit?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="attendance-btn"
+                >
+                  📙 Third Year Attendance
+                </a>
+              </div>
             )}
 
             {showAttendancePrompt && (
@@ -173,12 +191,15 @@ const TeamsPage = () => {
                   />
                   <div className="modal-buttons">
                     <button onClick={handleAttendanceSubmit}>Submit</button>
-                    <button onClick={() => setShowAttendancePrompt(false)}>Cancel</button>
+                    <button onClick={() => setShowAttendancePrompt(false)}>
+                      Cancel
+                    </button>
                   </div>
                 </div>
               </div>
             )}
           </div>
+
         </div>
       )}
     </div>
