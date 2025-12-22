@@ -90,12 +90,10 @@ const Gallery = () => {
               {photos[selectedAlbum]?.map((photo, index) => {
                 const src = photo.url && photo.url.startsWith('http') ? photo.url : `${API_BASE}${photo.url}`;
                 return (
-                  <div
-                    className="photo-card"
-                    key={index}
-                    onClick={() => setModalImage(src)}
-                  >
-                    <img src={src} alt={photo.name || "photo"} />
+                  <div className="photo-card" key={index}>
+                    <div className="photo-img-wrapper">
+                      <img src={src} alt={photo.name || "photo"} />
+                    </div>
                   </div>
                 );
               })}

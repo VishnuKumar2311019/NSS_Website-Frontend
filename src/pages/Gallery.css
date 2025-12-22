@@ -89,12 +89,25 @@
   gap: 15px;
 }
 
-.photo-card img {
+
+/* FIXED SIZE IMAGE CONTAINER */
+.photo-img-wrapper {
   width: 100%;
-  height: 160px;
+  aspect-ratio: 4 / 3; /* ⭐ KEY ALIGNMENT FIX */
+  overflow: hidden;
+}
+
+/* IMAGE */
+.photo-img-wrapper img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 10px;
-  transition: transform 0.25s;
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.photo-img-wrapper img:hover {
+  transform: scale(1.05);
 }
 
 .photo-card img:hover {
