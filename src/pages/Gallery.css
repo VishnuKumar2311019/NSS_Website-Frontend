@@ -115,32 +115,46 @@
 }
 
 /* Modal */
+/* ===== MODAL FIX ===== */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.75);
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Centering container */
+.modal-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 85vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.modal-content {
-  position: relative;
-}
-
+/* Image alignment fix */
 .modal-img {
-  max-width: 90vw;
-  max-height: 80vh;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
   border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
+/* Close button */
 .modal-close {
   position: absolute;
   top: -40px;
   right: -10px;
-  background: #fff;
+  background: #ffffff;
+  color: #003366;
   border: none;
   border-radius: 50%;
-  padding: 5px 10px;
+  font-size: 18px;
+  padding: 6px 10px;
   cursor: pointer;
 }

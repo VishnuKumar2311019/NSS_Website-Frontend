@@ -5,12 +5,22 @@ import "./Gallery.css";
 import { API_BASE } from "../utils/api";
 
 const Gallery = () => {
+  // ===== STATE DECLARATIONS =====
   const [albums, setAlbums] = useState([]);
   const [photos, setPhotos] = useState({});
   const [selectedAlbum, setSelectedAlbum] = useState(null);
   const [modalImage, setModalImage] = useState(null);
 
-  // Fetch albums & photos
+  // ===== LOCK BACKGROUND SCROLL WHEN MODAL OPENS =====
+  useEffect(() => {
+    if (modalImage) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [modalImage]);
+
+  // ===== FETCH ALBUMS & PHOTOS =====
   useEffect(() => {
     const fetchAlbums = () => {
       axios
@@ -30,9 +40,11 @@ const Gallery = () => {
 
     fetchAlbums();
 
+    // Listen for gallery updates
     const onGalleryUpdated = () => fetchAlbums();
     window.addEventListener("galleryUpdated", onGalleryUpdated);
 
+    // Cross-tab sync
     const onStorage = (e) => {
       if (e.key === "galleryUpdated") fetchAlbums();
     };
@@ -49,7 +61,7 @@ const Gallery = () => {
       <div className="gallery-container">
         <h2 className="gallery-title">📸 Our Gallery</h2>
 
-        {/* ===== ALBUM LIST ===== */}
+        {/* ===== ALBUM LIST VIEW ===== */}
         {!selectedAlbum ? (
           <div className="album-grid">
             {albums.map((album) => (
@@ -77,7 +89,7 @@ const Gallery = () => {
             ))}
           </div>
         ) : (
-          /* ===== ALBUM PHOTOS ===== */
+          /* ===== ALBUM PHOTOS VIEW ===== */
           <div className="album-view">
             <div className="album-header">
               <h3>{selectedAlbum}</h3>
@@ -99,7 +111,7 @@ const Gallery = () => {
                   <div
                     className="photo-card"
                     key={index}
-                    onClick={() => setModalImage(src)} // ✅ IMPORTANT FIX
+                    onClick={() => setModalImage(src)}
                   >
                     <div className="photo-img-wrapper">
                       <img src={src} alt={photo.name || "photo"} />
