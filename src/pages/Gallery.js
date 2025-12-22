@@ -10,7 +10,7 @@ const Gallery = () => {
   const [selectedAlbum, setSelectedAlbum] = useState(null);
   const [modalImage, setModalImage] = useState(null);
 
-  // Fetch albums & photos (read-only)
+  // Fetch albums & photos
   useEffect(() => {
     const fetchAlbums = () => {
       axios
@@ -28,22 +28,19 @@ const Gallery = () => {
         .catch((err) => console.error("Error fetching gallery:", err));
     };
 
-    // initial fetch
     fetchAlbums();
 
-    // refresh when gallery is updated elsewhere in the app
     const onGalleryUpdated = () => fetchAlbums();
-    window.addEventListener('galleryUpdated', onGalleryUpdated);
+    window.addEventListener("galleryUpdated", onGalleryUpdated);
 
-    // also listen to storage for cross-tab updates
     const onStorage = (e) => {
-      if (e.key === 'galleryUpdated') fetchAlbums();
+      if (e.key === "galleryUpdated") fetchAlbums();
     };
-    window.addEventListener('storage', onStorage);
+    window.addEventListener("storage", onStorage);
 
     return () => {
-      window.removeEventListener('galleryUpdated', onGalleryUpdated);
-      window.removeEventListener('storage', onStorage);
+      window.removeEventListener("galleryUpdated", onGalleryUpdated);
+      window.removeEventListener("storage", onStorage);
     };
   }, []);
 
@@ -52,6 +49,7 @@ const Gallery = () => {
       <div className="gallery-container">
         <h2 className="gallery-title">📸 Our Gallery</h2>
 
+        {/* ===== ALBUM LIST ===== */}
         {!selectedAlbum ? (
           <div className="album-grid">
             {albums.map((album) => (
@@ -63,7 +61,11 @@ const Gallery = () => {
                 <div className="album-thumb">
                   {photos[album]?.[0] ? (
                     <img
-                      src={photos[album][0].url && photos[album][0].url.startsWith('http') ? photos[album][0].url : `${API_BASE}${photos[album][0].url}`}
+                      src={
+                        photos[album][0].url.startsWith("http")
+                          ? photos[album][0].url
+                          : `${API_BASE}${photos[album][0].url}`
+                      }
                       alt={`${album} thumbnail`}
                     />
                   ) : (
@@ -75,6 +77,7 @@ const Gallery = () => {
             ))}
           </div>
         ) : (
+          /* ===== ALBUM PHOTOS ===== */
           <div className="album-view">
             <div className="album-header">
               <h3>{selectedAlbum}</h3>
@@ -88,9 +91,16 @@ const Gallery = () => {
 
             <div className="photo-grid">
               {photos[selectedAlbum]?.map((photo, index) => {
-                const src = photo.url && photo.url.startsWith('http') ? photo.url : `${API_BASE}${photo.url}`;
+                const src = photo.url.startsWith("http")
+                  ? photo.url
+                  : `${API_BASE}${photo.url}`;
+
                 return (
-                  <div className="photo-card" key={index}>
+                  <div
+                    className="photo-card"
+                    key={index}
+                    onClick={() => setModalImage(src)} // ✅ IMPORTANT FIX
+                  >
                     <div className="photo-img-wrapper">
                       <img src={src} alt={photo.name || "photo"} />
                     </div>
@@ -101,7 +111,7 @@ const Gallery = () => {
           </div>
         )}
 
-        {/* Modal View */}
+        {/* ===== MODAL VIEW ===== */}
         {modalImage && (
           <div
             className="modal-overlay"
@@ -113,7 +123,7 @@ const Gallery = () => {
             >
               <img
                 src={modalImage}
-                alt="Full View"
+                alt="Gallery Preview"
                 className="modal-img"
               />
               <button
