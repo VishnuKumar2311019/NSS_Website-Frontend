@@ -96,7 +96,9 @@ const ActivitiesPage = () => {
 
         return (
           <li key={reportIndex}>
-            <a href={reportUrl} className="report-link">
+            <a href={`https://nss-website-backend.onrender.com/download-report?url=${encodeURIComponent(report.url)}&filename=${encodeURIComponent(report.original_name)}`}
+              className="report-link"
+            >
               📄 {report.original_name}
             </a>
           </li>
