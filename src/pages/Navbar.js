@@ -1,22 +1,43 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import "./Navbar.css";
+import { Link, useLocation } from "react-router-dom";
+import "./Navbar.css"; // or reuse Home.css if already styled
 
 const Navbar = () => {
-  return (
-    <nav className="main-navbar">
-      <ul className="nav-left">
-        <li><Link to="/achievements">Achievements</Link></li>
-        <li><Link to="/annualcamp">Annual Camp</Link></li>
-        <li><Link to="/teams">Teams</Link></li>
-        <li><Link to="/clubsPage">Clubs</Link></li>
-        <li><Link to="/gallery">Gallery</Link></li>
-        <li><Link to="/contact">Contact</Link></li>
-      </ul>
+  const location = useLocation();
 
-      <Link to="/login">
-        <button className="login-btn">Login</button>
-      </Link>
+  const isActive = (path) => location.pathname === path;
+
+  return (
+    <nav className="top-nav">
+      <ul className="nav-list">
+        <li className={isActive("/") ? "active" : ""}>
+          <Link to="/">Home</Link>
+        </li>
+
+        <li className={isActive("/achievements") ? "active" : ""}>
+          <Link to="/achievements">Achievements</Link>
+        </li>
+
+        <li className={isActive("/annualcamp") ? "active" : ""}>
+          <Link to="/annualcamp">Annual Camp</Link>
+        </li>
+
+        <li className={isActive("/teams") ? "active" : ""}>
+          <Link to="/teams">Teams</Link>
+        </li>
+
+        <li className={isActive("/clubs") ? "active" : ""}>
+          <Link to="/clubs">Clubs</Link>
+        </li>
+
+        <li className={isActive("/gallery") ? "active" : ""}>
+          <Link to="/gallery">Gallery</Link>
+        </li>
+
+        <li className={isActive("/contact") ? "active" : ""}>
+          <Link to="/contact">Contact</Link>
+        </li>
+      </ul>
     </nav>
   );
 };
