@@ -81,31 +81,31 @@ const ActivitiesPage = () => {
                   </div>
                 )}
                 {activity.reports && activity.reports.length > 0 && (
-                  <div className="activity-reports">
-                    <h4>Reports:</h4>
-                    <ul>
-                      {activity.reports.map((report, reportIndex) => {
-                        const reportUrl = report.url 
-                          ? (report.url.startsWith('http') ? report.url : `https://nss-website-backend.onrender.com${report.url}`)
-                          : `https://nss-website-backend.onrender.com${report.filename || report.name}`;
-                        
-                        return (
-                          <li key={reportIndex}>
-                            <a 
-                              href={reportUrl} 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              download
-                              className="report-link"
-                            >
-                              📄 {report.original_name || report.filename || report.name || `Report ${reportIndex + 1}`}
-                            </a>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-                )}
+  <div className="activity-reports">
+    <h4>Reports:</h4>
+    <ul>
+      {activity.reports.map((report, reportIndex) => {
+        const baseUrl = report.url ? (report.url.startsWith("http") ? report.url: `https://nss-website-backend.onrender.com${report.url}`)
+                      : `https://nss-website-backend.onrender.com${report.filename || report.name}`;
+
+        const reportUrl = baseUrl.startsWith("https://res.cloudinary.com") ? `${baseUrl}?fl_attachment=${encodeURIComponent(
+                report.original_name || `Report_${reportIndex + 1}`)}`: baseUrl;
+
+        return (
+                <li key={reportIndex}>
+                <a
+                  href={reportUrl}
+                      className="report-link"
+                  >
+                  📄 {report.original_name || report.filename || report.name || `Report ${reportIndex + 1}`}
+                </a>
+                </li>
+                );
+        })}
+      </ul>
+      </div>
+          )}
+
               </div>
             </div>
           ))}
