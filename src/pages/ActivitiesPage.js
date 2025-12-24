@@ -85,26 +85,27 @@ const ActivitiesPage = () => {
     <h4>Reports:</h4>
     <ul>
       {activity.reports.map((report, reportIndex) => {
-        const baseUrl = report.url ? (report.url.startsWith("http") ? report.url: `https://nss-website-backend.onrender.com${report.url}`)
-                      : `https://nss-website-backend.onrender.com${report.filename || report.name}`;
+        const baseUrl = report.url;
 
-        const reportUrl = baseUrl.startsWith("https://res.cloudinary.com") ? `${baseUrl}?fl_attachment=${encodeURIComponent(
-                report.original_name || `Report_${reportIndex + 1}`)}`: baseUrl;
+        const reportUrl =
+          baseUrl && baseUrl.startsWith("https://res.cloudinary.com")
+            ? `${baseUrl}?response-content-disposition=${encodeURIComponent(
+                `attachment;filename=${report.original_name}`
+              )}`
+            : baseUrl;
 
         return (
-                <li key={reportIndex}>
-               <a
-                  href={report.url}
-                  className="report-link"
-                >
-                  📄 {report.original_name || `Report ${reportIndex + 1}`}
-                </a>
-                </li>
-                );
-        })}
-      </ul>
-      </div>
-          )}
+          <li key={reportIndex}>
+            <a href={reportUrl} className="report-link">
+              📄 {report.original_name}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+)}
+
 
               </div>
             </div>
