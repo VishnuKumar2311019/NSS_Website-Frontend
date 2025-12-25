@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './Home.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import MainLayout from './MainLayout.js';
 
 /* Load Google Font once */
 const fontLink = document.createElement('link');
