@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './ContactUsPage.css';
-import MainLayout from '../components/MainLayout';
+import MainLayout from './MainLayout';
 
 const ContactUsPage = () => {
 
