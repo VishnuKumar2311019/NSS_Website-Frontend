@@ -1,70 +1,93 @@
-import React, { useEffect, useState } from "react"; 
-import "./Gallery.css";
+import React, { useEffect, useState } from "react";
+import "./ActivitiesPage.css";
 
-const Gallery = () => {
-  const [photos, setPhotos] = useState([]);
+const ActivitiesPage = () => {
+  const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://nss-website-backend.onrender.com/api/photos")
-      .then(res => res.json())
-      .then(data => {
-        if (Array.isArray(data)) {
-          setPhotos(data);
-        } else {
-          setPhotos([]);
-        }
+    fetch("https://nss-website-backend.onrender.com/api/activities")
+      .then((res) => res.json())
+      .then((data) => {
+        setActivities(Array.isArray(data) ? data : []);
         setLoading(false);
       })
-      .catch(err => {
-        console.error("Error fetching gallery photos:", err);
-        setPhotos([]);
+      .catch((err) => {
+        console.error("Error fetching activities:", err);
+        setActivities([]);
         setLoading(false);
       });
   }, []);
 
   if (loading) {
     return (
-      <div className="gallery-container">
-        <h2>Gallery</h2>
-        <p>Loading photos...</p>
+      <div className="activities-container">
+        <h2>NSS Activities</h2>
+        <p>Loading activities...</p>
       </div>
     );
   }
 
   return (
-    <div className="gallery-container">
-      <h2>NSS Gallery</h2>
-      <p>Moments captured from our activities</p>
+    <div className="activities-container">
+      <h2>NSS Activities</h2>
+      <p>Explore our latest activities and events</p>
 
-      {photos.length === 0 ? (
-        <p>No photos available</p>
+      {activities.length === 0 ? (
+        <p>No activities available.</p>
       ) : (
-        <div className="gallery-grid">
-          {photos.map((photo, index) => {
-            const imageUrl = photo.url
-              ? (photo.url.startsWith("http")
-                  ? photo.url
-                  : `https://nss-website-backend.onrender.com/${photo.url}`)
-              : `https://nss-website-backend.onrender.com/uploads/${photo.filename || photo.name}`;
+        <div className="activities-grid">
+          {activities.map((activity, index) => (
+            <div key={activity._id || index} className="activity-card">
+              <h3>{activity.title}</h3>
+              <p>{activity.description}</p>
+              <p>📍 {activity.location || "SSN Campus"}</p>
+              <p>Status: {activity.status || "Past"}</p>
 
-            return (
-              <img
-                key={photo._id || index}
-                src={imageUrl}
-                alt="NSS Gallery"
-                className="gallery-img"
-                onError={(e) => {
-                  e.target.style.display = "none";
-                  console.log("Image failed to load:", imageUrl);
-                }}
-              />
-            );
-          })}
+              {/* PHOTOS */}
+              {activity.photos?.length > 0 && (
+                <div className="photos-grid">
+                  {activity.photos.map((photo, i) => {
+                    const imageUrl = photo.url?.startsWith("http")
+                      ? photo.url
+                      : `https://nss-website-backend.onrender.com${photo.url}`;
+
+                    return (
+                      <img
+                        key={i}
+                        src={imageUrl}
+                        alt="Activity"
+                        onError={(e) => (e.target.style.display = "none")}
+                      />
+                    );
+                  })}
+                </div>
+              )}
+
+              {/* REPORTS */}
+              {activity.reports?.length > 0 && (
+                <ul>
+                  {activity.reports.map((report, i) => (
+                    <li key={i}>
+                      <a
+                        href={`https://nss-website-backend.onrender.com/download-report?url=${encodeURIComponent(
+                          report.url
+                        )}&filename=${encodeURIComponent(
+                          report.original_name
+                        )}`}
+                      >
+                        📄 {report.original_name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
         </div>
       )}
     </div>
   );
 };
 
-export default Gallery;
+export default ActivitiesPage;
