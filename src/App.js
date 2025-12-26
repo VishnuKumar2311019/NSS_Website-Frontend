@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 import MissionPage from './pages/MissionPage';
@@ -18,26 +18,9 @@ import ActivitiesPage from './pages/ActivitiesPage';
 import ResetPassword from './pages/ResetPassword';
 import ClubsPage from './pages/ClubsPage';
 
-
-/* ===== Wrapper to control Navbar visibility ===== */
-function Layout() {
-  const location = useLocation();
-
-  // Pages where navbar should NOT appear
-  const hideNavbarRoutes = [
-    '/login',
-    '/admin-dashboard',
-    '/vertical-dashboard/photography'
-  ];
-
-  const shouldHideNavbar =
-    hideNavbarRoutes.includes(location.pathname) ||
-    location.pathname.startsWith('/reset-password');
-
+function App() {
   return (
-    <>
-      {!shouldHideNavbar && <Navbar />}
-
+    <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/mission" element={<MissionPage />} />
@@ -51,22 +34,14 @@ function Layout() {
         <Route path="/contact" element={<ContactUsPage />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/activities" element={<ActivitiesPage />} />
-        <Route path="/ClubsPage" element={<ClubsPage />} />
+        <Route path="/clubsPage" element={<ClubsPage />} />
 
-        {/* Auth / Dashboards */}
+        {/* Auth / dashboards */}
         <Route path="/login" element={<Login />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/vertical-dashboard/photography" element={<VerticalDashboardPhotography />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
       </Routes>
-    </>
-  );
-}
-
-function App() {
-  return (
-    <Router>
-      <Layout />
     </Router>
   );
 }
