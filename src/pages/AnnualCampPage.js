@@ -1,6 +1,6 @@
 import React from 'react';
 import './AnnualCampPage.css';
-import MainLayout from '../components/MainLayout';
+import MainLayout from './MainLayout';
 
 const AnnualCampPage = () => {
   const images = require.context('../assets/camp-gallery', false, /\.(png|jpe?g|svg)$/);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Bar } from 'react-chartjs-2';
 import "./TeamsPage.css";
-import MainLayout from "../components/MainLayout";
+import MainLayout from './MainLayout';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(

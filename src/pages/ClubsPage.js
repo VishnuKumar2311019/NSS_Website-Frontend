@@ -1,7 +1,7 @@
 // ClubsPage.jsx
 import React, { useState } from "react";
 import "./ClubsPage.css";
-import MainLayout from "../components/MainLayout";
+import MainLayout from './MainLayout';
 
 const clubs = {
   Nature: {

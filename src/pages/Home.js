@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Home.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
-
+import MainLayout from './MainLayout';
 /* Load Google Font once */
 const fontLink = document.createElement('link');
 fontLink.href = "https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap";
@@ -141,7 +140,7 @@ const Home = () => {
         </div>
       </div>
 
-    </MainLayout>
+  </MainLayout>
   );
 };
 

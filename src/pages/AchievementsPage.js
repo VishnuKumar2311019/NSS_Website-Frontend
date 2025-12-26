@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './AchievementsPage.css';
-import MainLayout from '../components/MainLayout';
+import MainLayout from './MainLayout';
 
 const mockAchievements = [
   {
