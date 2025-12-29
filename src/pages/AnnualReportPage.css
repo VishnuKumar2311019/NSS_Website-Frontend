@@ -1,26 +1,416 @@
-.page-wrapper {
+/* Annual Report Page - Consistent with Home.css */
+
+.annual-report-wrapper {
+  background: #ffffff;
+  min-height: 100vh;
+}
+
+/* Hero Section */
+.report-hero {
+  min-height: 50vh;
+  background: linear-gradient(135deg, #003366 0%, #1a237e 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   padding: 2rem;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #003366;
-  color: #cadef3;
-  min-height: 100vh; /* ensures it covers the full screen */
 }
 
-.page-wrapper h1 {
-  font-size: 2rem;
-  color: #cadef3;
+.report-hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
   margin-bottom: 1rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  font-family: 'Poppins', sans-serif;
 }
 
-.page-wrapper h2 {
-  font-size: 1.5rem;
-  color: #cadef3;
+.hero-tagline {
+  font-size: 1.3rem;
+  color: #b8d4ff;
+  font-weight: 400;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Section Styling */
+.annual-report-wrapper section {
+  background: white;
+  color: black;
+  margin: 20px;
+  padding: 30px;
+  border-radius: 15px;
+  border-left: 7px solid #003366;
+}
+
+.annual-report-wrapper section h2 {
+  color: #003366;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.annual-report-wrapper section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #333;
+}
+
+/* Introduction */
+.report-intro {
+  background: #cadef3;
+  text-align: center;
+}
+
+/* Requirements Section */
+.requirements-section p {
+  margin-bottom: 2rem;
+}
+
+.requirements-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
   margin-top: 2rem;
 }
 
-.page-wrapper ul {
-  list-style-type: disc;
-  margin-left: 1.5rem;
-  line-height: 1.6;
+.requirement-card {
+  background: linear-gradient(135deg, #005792 0%, #6697e4 100%);
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  text-align: center;
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 87, 146, 0.3);
+}
+
+.requirement-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 87, 146, 0.4);
+}
+
+.req-number {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
+
+.requirement-card h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  color: white;
+}
+
+.requirement-card p {
   font-size: 1rem;
+  line-height: 1.6;
+  color: #e0f2fe;
+  margin: 0;
+}
+
+/* Activities Categories */
+.activities-categories-section {
+  background: #f8fafc;
+}
+
+.categories-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.category-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 5px solid #003366;
+  transition: all 0.3s ease;
+  align-items: center;
+}
+
+.category-item:hover {
+  transform: translateX(8px);
+  box-shadow: 0 6px 20px rgba(0, 51, 102, 0.15);
+  background: #cadef3;
+}
+
+.category-icon {
+  font-size: 3.5rem;
+  text-align: center;
+}
+
+.category-content h3 {
+  color: #003366;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.category-content p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #333;
+  margin: 0;
+}
+
+/* Year-Round Activities */
+.year-round-section {
+  background: white;
+}
+
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.activity-box {
+  background: #cadef3;
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  border-left: 4px solid #003366;
+  transition: all 0.3s ease;
+}
+
+.activity-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 51, 102, 0.2);
+  background: #b8d4ff;
+}
+
+.activity-emoji {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.activity-box h4 {
+  color: #003366;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.activities-description {
+  margin-top: 2rem;
+  font-style: italic;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+/* Organization Section */
+.organization-section {
+  background: linear-gradient(135deg, #cadef3 0%, #b8d4ff 100%);
+}
+
+.org-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.org-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 5px solid #b30000;
+  box-shadow: 0 4px 15px rgba(0, 51, 102, 0.1);
+}
+
+.org-card h3 {
+  color: #003366;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.org-card p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #333;
+  margin: 0 0 1rem 0;
+}
+
+.org-card strong {
+  color: #b30000;
+  font-weight: 600;
+}
+
+.org-card ul {
+  margin: 1rem 0 0 1.5rem;
+  padding: 0;
+}
+
+.org-card ul li {
+  margin: 0.5rem 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Impact Section */
+.impact-section {
+  background: #f8fafc;
+}
+
+.impact-content p {
+  margin-bottom: 2rem;
+}
+
+.impact-quote {
+  background: white;
+  padding: 2rem;
+  border-left: 5px solid #005792;
+  border-radius: 10px;
+  margin-top: 2rem;
+}
+
+.impact-quote p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  font-style: italic;
+  color: #003366;
+  margin: 0;
+}
+
+/* Download Section */
+.download-section {
+  background: linear-gradient(135deg, #003366 0%, #005792 100%);
+  text-align: center;
+  color: white;
+  border-left: none;
+}
+
+.download-section h2 {
+  color: white;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.download-section p {
+  color: #e0f2fe;
+  margin-bottom: 2.5rem;
+  font-size: 1.15rem;
+}
+
+.download-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.download-btn {
+  background: white;
+  color: #003366;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.download-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  background: #cadef3;
+}
+
+.download-btn.secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.download-btn.secondary:hover {
+  background: white;
+  color: #003366;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .report-hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-tagline {
+    font-size: 1.1rem;
+  }
+
+  .requirements-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .activities-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .org-info {
+    grid-template-columns: 1fr;
+  }
+
+  .category-item {
+    grid-template-columns: 60px 1fr;
+    gap: 1.5rem;
+  }
+
+  .category-icon {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .report-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-tagline {
+    font-size: 1rem;
+  }
+
+  .annual-report-wrapper section {
+    margin: 15px;
+    padding: 20px;
+  }
+
+  .annual-report-wrapper section h2 {
+    font-size: 1.6rem;
+  }
+
+  .activities-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-item {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .download-buttons {
+    flex-direction: column;
+  }
+
+  .download-btn {
+    width: 100%;
+  }
+
+  .download-section h2 {
+    font-size: 2rem;
+  }
 }

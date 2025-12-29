@@ -1,68 +1,305 @@
+/* Recent Initiatives Page - Consistent with Home.css */
+
 .initiatives-wrapper {
-  padding: 60px 20px;
-  /*background: linear-gradient(135deg, #cadef3, #003366);*/
-  background-color: #003366;
+  background: #ffffff;
   min-height: 100vh;
+}
+
+/* Hero Section */
+.initiatives-hero {
+  min-height: 50vh;
+  background: linear-gradient(135deg, #005792 0%, #003366 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  color: #fff;
-  font-family: 'Poppins', sans-serif;
-
+  padding: 2rem;
 }
 
-/* Title */
-.initiatives-title {
-  font-size: 2.2rem;
+.initiatives-hero h1 {
+  font-size: 3rem;
   font-weight: 700;
-  margin-bottom: 20px;
-  color: #f8f8f8;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+  color: white;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  font-family: 'Poppins', sans-serif;
 }
 
-/* Intro Paragraph */
+.hero-tagline {
+  font-size: 1.4rem;
+  color: #b8d4ff;
+  font-weight: 400;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Section Styling */
+.initiatives-wrapper section {
+  background: white;
+  color: black;
+  margin: 20px;
+  padding: 30px;
+  border-radius: 15px;
+  border-left: 7px solid #003366;
+}
+
+.initiatives-wrapper section h2 {
+  color: #003366;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Introduction */
 .initiatives-intro {
-  font-size: 1rem;
-  margin-bottom: 40px;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.6;
-  color: #f0f6fa;
+  background: #cadef3;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  text-align: center;
 }
 
-/* Grid Layout */
+/* Initiatives Grid */
 .initiatives-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-  max-width: 1200px;
-  margin: 0 auto;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
-/* Card */
 .initiative-card {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  padding: 25px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  backdrop-filter: blur(6px);
-  border-left: 6px solid #b30000;
+  background: #f8fafc;
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 5px solid #005792;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 .initiative-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  box-shadow: 0 8px 25px rgba(0, 51, 102, 0.15);
+  background: white;
+  border-left-color: #b30000;
 }
 
-/* Card Text */
+.initiative-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
 .initiative-card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 12px;
-  color: #cadef3;
+  color: #003366;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  line-height: 1.4;
 }
 
 .initiative-card p {
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: #f0f6fa;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.initiative-tag {
+  display: inline-block;
+  background: linear-gradient(135deg, #005792, #6697e4);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+/* National Alignment Section */
+.national-alignment-section {
+  background: linear-gradient(135deg, #cadef3 0%, #b8d4ff 100%);
+}
+
+.national-alignment-section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #222;
+  margin-bottom: 2rem;
+}
+
+.missions-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.mission-badge {
+  background: white;
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 51, 102, 0.1);
+  transition: all 0.3s ease;
+  border-left: 4px solid #003366;
+}
+
+.mission-badge:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 51, 102, 0.2);
+}
+
+.mission-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.mission-badge h4 {
+  color: #003366;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Upcoming Section */
+.upcoming-section {
+  background: #f8fafc;
+}
+
+.upcoming-intro {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 2.5rem;
+}
+
+.upcoming-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.upcoming-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 5px solid #b30000;
+  transition: all 0.3s ease;
+  align-items: center;
+}
+
+.upcoming-item:hover {
+  transform: translateX(8px);
+  box-shadow: 0 6px 20px rgba(179, 0, 0, 0.15);
+}
+
+.upcoming-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #cadef3;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.upcoming-content h3 {
+  color: #003366;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.upcoming-content p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #333;
+  margin: 0;
+}
+
+/* Call to Action */
+.initiatives-cta {
+  background: linear-gradient(135deg, #003366 0%, #005792 100%);
+  color: #003366 !important;
+  text-align: center;
+  border-left: none !important;
+}
+
+.initiatives-cta h2 {
+  color: #003366 !important;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.initiatives-cta p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin: 0;
+  color: #003366 !important;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .initiatives-hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-tagline {
+    font-size: 1.1rem;
+  }
+
+  .initiatives-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .missions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .upcoming-item {
+    grid-template-columns: 60px 1fr;
+    gap: 1.5rem;
+  }
+
+  .upcoming-number {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .initiatives-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-tagline {
+    font-size: 1rem;
+  }
+
+  .initiatives-wrapper section {
+    margin: 15px;
+    padding: 20px;
+  }
+
+  .initiatives-wrapper section h2 {
+    font-size: 1.6rem;
+  }
+
+  .missions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .upcoming-item {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .upcoming-number {
+    font-size: 2rem;
+  }
+
+  .initiatives-cta h2 {
+    font-size: 2rem;
+  }
 }

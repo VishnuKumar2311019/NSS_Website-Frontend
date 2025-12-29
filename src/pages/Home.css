@@ -244,6 +244,9 @@ section {
   border-radius: 15px;
   border-left: 7px solid #003366;
 }
+section h2 {
+  color: #003366;
+}
 
 /* =======================
    FOOTER

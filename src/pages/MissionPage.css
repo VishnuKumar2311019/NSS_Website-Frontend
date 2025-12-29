@@ -1,98 +1,275 @@
-.mission-wrapper {
-  background-image: url('../assets/camp-gallery/NssGroupPhoto.png');
-  /*background-color: #003366;*/
-  background-size: cover;       
-  background-position: center;  
-  background-repeat: no-repeat; 
-  background-attachment: fixed; 
-  height: 100vh;                
-  width: 100%;    
-  overflow: hidden; 
-  position: relative;
+/* Mission Page - Consistent with Home.css */
+
+.mission-page-wrapper {
+  background: #ffffff;
+  min-height: 100vh;
+}
+
+/* Hero Banner - Matching home hero style */
+.mission-hero {
+  min-height: 50vh;
+  background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)),
+              url('../assets/mission_photo.png') center/cover no-repeat;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.mission-hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  font-family: 'Poppins', sans-serif;
+}
+
+.mission-tagline {
+  font-size: 1.5rem;
+  color: #b8d4ff;
+  font-weight: 500;
+  font-style: italic;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Section Styling - Matching home.css sections */
+.mission-page-wrapper section {
+  background: white;
+  color: black;
+  margin: 20px;
+  padding: 30px;
+  border-radius: 15px;
+  border-left: 7px solid #003366;
+}
+
+.mission-page-wrapper section h2 {
+  color: #003366;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.mission-page-wrapper section p {
+  color: #333;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+/* Mission Content with Image */
+.mission-section-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
   align-items: center;
 }
 
-.mission-container::-webkit-scrollbar {
-  display: none;
+.mission-image-container {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
-.mission-container {
-  padding: 40px 25px;
-  width: 85%;
-  max-height: 90vh;
-  overflow-y: auto;
-  border-radius: 20px;
-  /*background: rgba(79, 120, 161, 0.55); /* navy glass effect */
-  background:transparent;
-  backdrop-filter: blur(0px);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
-  color: #f0f6fa;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  animation: fadeIn 1s ease-in;
+.mission-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
 }
 
-.mission-container section {
-  background:#cadef3; /* light blue cards */
-  padding: 25px;
-  margin: 25px auto;
-  border-radius: 15px;
-  max-width: 900px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
-  animation: slideUp 0.8s ease forwards;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  color:#003366;
+.mission-section-content:hover .mission-image-container img {
+  transform: scale(1.03);
 }
 
-.mission-container section:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 25px rgba(179, 0, 0, 0.5);
+.mission-text h2 {
+  margin-bottom: 1rem;
 }
 
-.mission-container h2,
-.mission-container h3 {
+/* Philosophy Section */
+.philosophy-section p strong {
+  color: #b30000;
+  font-weight: 600;
+}
+
+.philosophy-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.value-badge {
+  background: linear-gradient(135deg, #005792, #6697e4);
+  color: white;
+  padding: 0.6rem 1.3rem;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 87, 146, 0.3);
+}
+
+.value-badge:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 87, 146, 0.5);
+}
+
+/* Objectives Grid */
+.objectives-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.objective-item {
+  background: #cadef3;
+  padding: 1.8rem 1.3rem;
+  border-radius: 12px;
   text-align: center;
-  margin-bottom: 20px;
-  font-weight: bold;
-  color: #003366; /* navy heading */
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+  transition: all 0.3s ease;
+  border-left: 4px solid #003366;
 }
 
-.mission-container ul {
-  list-style-type: none;
-  padding-left: 0;
+.objective-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 51, 102, 0.2);
+  background: #b8d4ff;
 }
 
-.mission-container li {
-  padding: 12px 18px;
-  margin-bottom: 12px;
-  position: relative;
-  background: rgba(104, 144, 196, 0.75);
-  border-left: 6px solid #003366; /* red accent */
-  border-radius: 8px;
+.objective-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.objective-item h3 {
+  font-size: 1.2rem;
+  color: #003366;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.objective-item p {
+  font-size: 0.95rem;
+  color: #333;
+  margin: 0;
+}
+
+/* Service Activities List */
+.service-activities {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5rem;
+}
+
+.service-activities li {
+  display: flex;
+  align-items: center;
+  background: #cadef3;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  border-left: 5px solid #003366;
   transition: all 0.3s ease;
 }
 
-.mission-container li:hover {
-  transform: scale(1.03);
-  background: rgba(82, 118, 156, 0.95);
-  border-left-color: #003366;
+.service-activities li:hover {
+  transform: translateX(8px);
+  background: #b8d4ff;
+  box-shadow: 0 4px 12px rgba(0, 51, 102, 0.15);
 }
 
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.activity-icon {
+  font-size: 1.8rem;
+  margin-right: 1.2rem;
 }
 
-@keyframes slideUp {
-  from { transform: translateY(50px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+.service-activities li span:last-child {
+  font-size: 1.05rem;
+  color: #003366;
+  font-weight: 500;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+/* Message Section */
+.message-section-content blockquote {
+  background: #f8fafc;
+  border-left: 5px solid #b30000;
+  padding: 1.5rem;
+  margin: 1.5rem 0 0 0;
+  font-style: italic;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #333;
+  border-radius: 8px;
+  position: relative;
+}
+
+.message-section-content blockquote::before {
+  content: '"';
+  font-size: 3rem;
+  color: #cadef3;
+  position: absolute;
+  top: -0.5rem;
+  left: 1rem;
+  font-family: Georgia, serif;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .mission-hero h1 {
+    font-size: 2rem;
+  }
+
+  .mission-tagline {
+    font-size: 1.2rem;
+  }
+
+  .mission-section-content {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-image-container {
+    order: -1;
+  }
+
+  .objectives-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .philosophy-values {
+    flex-direction: column;
+  }
+
+  .value-badge {
+    text-align: center;
+  }
+
+  .mission-page-wrapper section {
+    margin: 15px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mission-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .mission-tagline {
+    font-size: 1rem;
+  }
+
+  .mission-page-wrapper section h2 {
+    font-size: 1.5rem;
+  }
+
+  .mission-page-wrapper section p {
+    font-size: 1rem;
+  }
 }

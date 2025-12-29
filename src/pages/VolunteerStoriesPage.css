@@ -1,66 +1,302 @@
-/* Wrapper */
-.stories-wrapper {
-  padding: 60px 20px;
-  /*background: linear-gradient(135deg, #cadef3, #003366);*/
-  background-color: #003366;
+/* Volunteer Stories Page - Consistent with Home.css */
+
+.volunteer-stories-wrapper {
+  background: #ffffff;
+  min-height: 100vh;
+}
+
+/* Hero Section */
+.volunteer-hero {
+  min-height: 50vh;
+  background: linear-gradient(135deg, #003366 0%, #005792 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  font-family: 'Poppins', sans-serif;
-  color: #fff;
-  min-height:100vh;
+  padding: 2rem;
 }
 
-/* Title */
-.stories-title {
-  font-size: 2rem;
-  margin-bottom: 40px;
+.volunteer-hero h1 {
+  font-size: 3rem;
   font-weight: 700;
-  color: #f8f8f8;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+  color: white;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  font-family: 'Poppins', sans-serif;
 }
 
-/* Grid layout */
-.stories-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-/* Story card */
-.story-card {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  padding: 25px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  backdrop-filter: blur(6px);
-  border-left: 6px solid #b30000;
-}
-
-.story-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
-}
-
-/* Text */
-.story-text {
-  font-size: 1.05rem;
+.hero-tagline {
+  font-size: 1.4rem;
+  color: #ffcccb;
+  font-weight: 400;
   font-style: italic;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  color: #f0f6fa;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Author */
-.story-author h4 {
+/* Section Styling */
+.volunteer-stories-wrapper section {
+  background: white;
+  color: black;
+  margin: 20px;
+  padding: 30px;
+  border-radius: 15px;
+  border-left: 7px solid #003366;
+}
+
+.volunteer-stories-wrapper section h2 {
+  color: #003366;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Introduction */
+.stories-intro {
+  background: #cadef3;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* Transformation Grid */
+.transformation-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.transformation-card {
+  background: #f8fafc;
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 5px solid #005792;
+  transition: all 0.3s ease;
+}
+
+.transformation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 51, 102, 0.15);
+  background: #cadef3;
+}
+
+.transform-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.transformation-card h3 {
+  color: #003366;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.transformation-card p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #333;
   margin: 0;
-  font-size: 1.1rem;
-  color: #cadef3;
 }
 
-.story-author span {
-  display: block;
-  font-size: 0.9rem;
-  color: #f5c2c2;
+/* Representation Section */
+.representation-section p {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+/* Highlights Grid */
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.highlight-card {
+  background: linear-gradient(135deg, #cadef3 0%, #b8d4ff 100%);
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 5px solid #b30000;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 51, 102, 0.1);
+}
+
+.highlight-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(179, 0, 0, 0.2);
+}
+
+.highlight-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.highlight-card h3 {
+  color: #003366;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.highlight-card p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #222;
+  margin: 0;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+  background: #f8fafc;
+}
+
+.testimonial-card {
+  background: white;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  border-left: 5px solid #b30000;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateX(8px);
+  box-shadow: 0 6px 20px rgba(179, 0, 0, 0.15);
+}
+
+.testimonial-card:last-child {
+  margin-bottom: 0;
+}
+
+.quote-mark {
+  font-size: 5rem;
+  color: #cadef3;
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+.testimonial-text {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #333;
+  font-style: italic;
+  margin: 2rem 0 1.5rem 0;
+}
+
+.testimonial-author {
+  text-align: right;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 2px solid #cadef3;
+}
+
+.author-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #003366;
+  margin: 0.3rem 0;
+}
+
+.author-detail {
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Call to Action Section */
+.cta-section {
+  background: linear-gradient(135deg, #003366 0%, #005792 100%) !important;
+  color: white !important;
+  text-align: center;
+  border-left: none !important;
+}
+
+.cta-section h2 {
+  color: white !important;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta-section p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  color: white !important;
+}
+
+.cta-highlight {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border-left: 5px solid #b30000;
+  margin-top: 2rem;
+}
+
+.cta-highlight p {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0;
+  color: white !important;
+}
+
+.cta-highlight strong {
+  color: #ffcccb;
+  font-size: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .volunteer-hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-tagline {
+    font-size: 1.1rem;
+  }
+
+  .transformation-grid,
+  .highlights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonial-text {
+    font-size: 1.1rem;
+  }
+
+  .cta-section h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .volunteer-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-tagline {
+    font-size: 1rem;
+  }
+
+  .volunteer-stories-wrapper section {
+    margin: 15px;
+    padding: 20px;
+  }
+
+  .volunteer-stories-wrapper section h2 {
+    font-size: 1.6rem;
+  }
+
+  .quote-mark {
+    font-size: 3.5rem;
+  }
 }
