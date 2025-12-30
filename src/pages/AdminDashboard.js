@@ -811,6 +811,78 @@ if (activeTab === 'gallery') {
     setGalleryFiles(files.length ? files : null);
   };
 
+  // const handleGalleryUpload = async (albumName) => {
+  //   if (!galleryFiles || galleryFiles.length === 0) return alert('Choose photos to upload');
+
+  //   // If no album selected, create a default one
+  //   let finalAlbumName = albumName;
+  //   if (!finalAlbumName) {
+  //     finalAlbumName = `Gallery ${new Date().getFullYear()}`;
+  //     try {
+  //       const createRes = await fetch('https://nss-website-backend.onrender.com/api/albums', {
+  //         method: 'POST',
+  //         headers: { 'Content-Type': 'application/json' },
+  //         body: JSON.stringify({ name: finalAlbumName })
+  //       });
+  //       // if album already exists, it will error but we continue
+  //       if (createRes.ok) {
+  //         setAlbumsList(prev => [...prev, { name: finalAlbumName, photos: [] }]);
+  //       }
+  //     } catch (err) {
+  //       console.log('Album may already exist, continuing...');
+  //     }
+  //   }
+
+  //   // 1) Upload files to admin upload endpoint with JWT
+  //   const form = new FormData();
+  //   galleryFiles.forEach((f) => form.append('photos', f));
+
+  //   try {
+  //     setGalleryUploading(true);
+
+  //     const uploadRes = await fetch('https://nss-website-backend.onrender.com/admin/upload-photos', {
+  //       method: 'POST',
+  //       headers: getAuthHeadersForFormData(),
+  //       body: form
+  //     });
+
+  //     if (uploadRes.status === 401) {
+  //       logout();
+  //       return;
+  //     }
+
+  //     const uploadData = await uploadRes.json();
+  //     if (!uploadRes.ok) throw new Error(uploadData.error || uploadData.message || 'Admin upload failed');
+
+  //     const uploadedPhotos = uploadData.photos || [];
+
+  //     // 2) Associate uploaded photos with album via JSON to album endpoint
+  //     const associateRes = await fetch(`https://nss-website-backend.onrender.com/api/albums/${encodeURIComponent(finalAlbumName)}/photos`, {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({ photos: uploadedPhotos })
+  //     });
+
+  //     const assocData = await associateRes.json();
+  //     if (!associateRes.ok) throw new Error(assocData.error || assocData.message || 'Associate failed');
+
+  //     alert('Uploaded and associated ' + (uploadedPhotos.length) + ' photos');
+  //     setGalleryFiles(null);
+
+  //     // refresh albums
+  //     const ref = await fetch('https://nss-website-backend.onrender.com/api/albums');
+  //     const arr = await ref.json();
+  //     setAlbumsList(arr || []);
+  //     // notify gallery viewers to refresh
+  //     try { localStorage.setItem('galleryUpdated', Date.now().toString()); window.dispatchEvent(new Event('galleryUpdated')); } catch (e) {}
+
+  //   } catch (err) {
+  //     console.error('Gallery upload error', err);
+  //     alert('Upload error: ' + err.message);
+  //   } finally {
+  //     setGalleryUploading(false);
+  //   }
+  // };
   const handleGalleryUpload = async (albumName) => {
     if (!galleryFiles || galleryFiles.length === 0) return alert('Choose photos to upload');
 
@@ -819,62 +891,50 @@ if (activeTab === 'gallery') {
     if (!finalAlbumName) {
       finalAlbumName = `Gallery ${new Date().getFullYear()}`;
       try {
-        const createRes = await fetch('https://nss-website-backend.onrender.com/api/albums', {
+        await fetch('https://nss-website-backend.onrender.com/api/albums', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ name: finalAlbumName })
         });
-        // if album already exists, it will error but we continue
-        if (createRes.ok) {
-          setAlbumsList(prev => [...prev, { name: finalAlbumName, photos: [] }]);
-        }
       } catch (err) {
-        console.log('Album may already exist, continuing...');
+        console.log('Album creation check ignored');
       }
     }
 
-    // 1) Upload files to admin upload endpoint with JWT
+    // --- NEW ONE-STEP UPLOAD LOGIC ---
     const form = new FormData();
-    galleryFiles.forEach((f) => form.append('photos', f));
+    galleryFiles.forEach((f) => form.append('photos', f)); // 'photos' key matches backend
 
     try {
       setGalleryUploading(true);
 
-      const uploadRes = await fetch('https://nss-website-backend.onrender.com/admin/upload-photos', {
+      // Send files DIRECTLY to the album endpoint
+      const res = await fetch(`https://nss-website-backend.onrender.com/api/albums/${encodeURIComponent(finalAlbumName)}/photos`, {
         method: 'POST',
-        headers: getAuthHeadersForFormData(),
+        // We manually add the token. Do NOT add 'Content-Type': 'multipart/form-data' 
+        // because the browser must generate the boundary string automatically.
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}` 
+        },
         body: form
       });
 
-      if (uploadRes.status === 401) {
-        logout();
-        return;
-      }
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || data.message || 'Upload failed');
 
-      const uploadData = await uploadRes.json();
-      if (!uploadRes.ok) throw new Error(uploadData.error || uploadData.message || 'Admin upload failed');
-
-      const uploadedPhotos = uploadData.photos || [];
-
-      // 2) Associate uploaded photos with album via JSON to album endpoint
-      const associateRes = await fetch(`https://nss-website-backend.onrender.com/api/albums/${encodeURIComponent(finalAlbumName)}/photos`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ photos: uploadedPhotos })
-      });
-
-      const assocData = await associateRes.json();
-      if (!associateRes.ok) throw new Error(assocData.error || assocData.message || 'Associate failed');
-
-      alert('Uploaded and associated ' + (uploadedPhotos.length) + ' photos');
+      alert(`Success! ${data.message || 'Photos uploaded.'}`);
       setGalleryFiles(null);
 
-      // refresh albums
+      // Refresh albums list
       const ref = await fetch('https://nss-website-backend.onrender.com/api/albums');
       const arr = await ref.json();
       setAlbumsList(arr || []);
-      // notify gallery viewers to refresh
-      try { localStorage.setItem('galleryUpdated', Date.now().toString()); window.dispatchEvent(new Event('galleryUpdated')); } catch (e) {}
+      
+      // Notify listeners (for the public gallery page to update)
+      try { 
+          localStorage.setItem('galleryUpdated', Date.now().toString()); 
+          window.dispatchEvent(new Event('galleryUpdated')); 
+      } catch (e) {}
 
     } catch (err) {
       console.error('Gallery upload error', err);
