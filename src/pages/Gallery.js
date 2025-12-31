@@ -102,7 +102,7 @@ const Gallery = () => {
                 </button>
               </div>
 
-              /* Inside the album-view (photo-grid) */
+{/* Inside the album-view (photo-grid) */}
               <div className="photo-grid">
                 {photos[selectedAlbum]?.map((photo, index) => {
                   /* Determine the correct source URL */
